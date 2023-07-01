@@ -1,0 +1,222 @@
+﻿@using Online_Store.Application.Services.Carts;
+@model CartDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int sumTota = 0;
+}
+
+<section class="cart-home">
+    <div class="post-item-cart d-block order-2">
+        <div class="content-page">
+            <div class="cart-form">
+                <form action="#" class="c-form">
+                    <table class="table-cart cart table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="product-cart-name">نام محصول</th>
+                                <th scope="col" class="product-cart-quantity">تعداد مورد نیاز</th>
+                                <th scope="col" class="product-cart-price">قیمت</th>
+                                <th scope="col" class="product-cart-Total">مجموع</th>
+                                <th scope="col" class="product-cart-Total">  </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.CartItems)
+                            {
+
+                                <tr>
+                                    <th scope="row" class="product-cart-name">
+                                        <div class="product-thumbnail-img">
+                                            <a href="#">
+                                                <img src="~/@item.Images">
+                                            </a>
+                                            <div class="product-remove">
+                                                <a href="~/cart/remove?ProductId=@item.Id" class="remove">
+                                                    <i class="mdi mdi-close"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="product-title">
+                                            <a href="#">
+                                                @item.Product
+                                            </a>
+
+                                        </div>
+                                    </th>
+                                    <td class="product-cart-quantity">
+                                        <div class="required-number before">
+                                            <div class="quantity">
+                                                <input type="number" min="1" max="100" step="1" value="@item.Count" id="count-@item.Id"><div class="quantity-nav"><div class="quantity-button quantity-up" onclick="AddCount('@item.Id')">+</div><div class="quantity-button quantity-down" onclick="lowCount('@item.Id')">-</div></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="product-cart-price">
+                                        <span class="amount">
+                                            @item.Price.ToString("n0")
+                                            <span>تومان</span>
+                                        </span>
+                                    </td>
+                                    <td class="product-cart-Total">
+                                        <span class="amount">
+                                            @{
+                                                int total = item.Price * item.Count;
+                                                sumTota += total;
+                                            }
+                                            @total.ToString("n0")
+                                            <span>تومان</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="~/cart/remove?ProductId=@item.Id" class="btn btn-danger">حذف کالا از سبد خرید</a>
+
+                                    </td>
+
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="cart-collaterals">
+                <div class="totals d-block">
+                    <h3 class="Total-cart-total">مجموع کل سبد خرید</h3>
+                    <div class="checkout-summary">
+                        <ul class="checkout-summary-summary">
+                            <li class="cart-subtotal">
+                                <span class="amount">قیمت کل</span>
+                                <span> @Model.SumAmount.ToString("n0") تومان</span>
+                            </li>
+                            <li class="shipping-totals">
+                                <span class="amount"> تماس با اپراتور برای ارسال کالا به مشتری</span>
+                                <div class="shipping-totals-item">
+                                    @*<div class="shipping-totals-outline">
+                                    <label for="#" class="outline-radio">
+                                    <input type="radio" name="payment_method" id="payment-option-online" checked="checked">
+                                    <span class="outline-radio-check"></span>
+                                    </label>
+                                    <label for="#" class="shipping-totals-title-row">
+                                    <div class="shipping-totals-title">حمل و نقل رایگان</div>
+                                    </label>
+                                    </div>
+                                    <div class="shipping-totals-outline">
+                                    <label for="#" class="outline-radio">
+                                    <input type="radio" name="payment_method" id="payment-option-online">
+                                    <span class="outline-radio-check"></span>
+                                    </label>
+                                    <label for="#" class="shipping-totals-title-row">
+                                    <div class="shipping-totals-title">حمل و نقل معمولی: 20,000 تومان</div>
+                                    </label>
+                                    </div>*@
+
+                                    @*<div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> آدرس خود را وارد کنید:</label>
+                                            <textarea id="Address" class="form-control" cols="70" rows="5"></textarea>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            
+                                            <a id="btnAddَAddress" class="btn btn-warning col-md-2"> ثبت آدرس  </a>
+                                            <a href="~/Pay/GetUserAddress/?">  ثبت</a>
+
+                                        </fieldset>
+                                    </div>*@
+
+                                </div>
+                            </li>
+                            @*<li class="order-total">
+                            <span class="amount"> مجموع</span>
+                            <span> </span>
+                            </li>*@
+                            <li class="discount-code">
+                                <div class=" align-items-center">
+                                    @*<div class="col-md-7 pr mt-5">
+                                    <div class="coupon">
+                                    <form action="#">
+                                    <input type="text" name="input-coupon" class="input-coupon-code" placeholder="كد تخفیف:">
+                                    <button class="btn btn-coupon" type="submit">اعمال</button>
+                                    </form>
+                                    </div>
+                                    </div>*@
+                                    <div class="col-md-2 pl mt-5">
+                                        <div class="proceed-to-checkout">
+                                            <a href="~/pay" class="checkout-button d-block">تسویه حساب</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts
+    {
+    <script>
+
+        function AddCount(CartItemId) {
+            window.location.replace('/cart/add?CartItemId=' + CartItemId);
+        }
+
+        function lowCount(CartItemId) {
+            window.location.replace('/cart/LowOff?CartItemId=' + CartItemId);
+        }
+
+        $('#btnAddَAddress').on('click', function () {
+
+            var data = new FormData();
+            data.append("Address", $("#Address").val());
+
+            // ارسال اطلاعات به کنترلر
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "Adress",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (data) {
+
+                    if (data.isSuccess == true) {
+
+                        swal.fire(
+                            'موفق!',
+                            data.message,
+                            'success'
+                        ).then(function (isConfirm) {
+                            //window.location.href = "/Admin/Products/";
+
+                        });
+                    }
+                    else {
+
+                        swal.fire(
+                            'هشدار!',
+                            data.message,
+                            'warning'
+                        );
+                    }
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+
+            });
+
+            ajaxRequest.done(function (xhr, textStatus) {
+                // Do other operation
+            });
+        });
+    </script>
+}

@@ -1,0 +1,78 @@
+﻿@using Online_Store.Common.Dto;
+@using static Online_Store.Application.Services.Products.Commands.EditProduct.EditProductService;
+@model ResultDto<ResultEditProductDto>;
+@{
+    //ViewData["Title"] = "جزئیات محصول";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title-wrap bar-warning">
+                <div class="card-title">  اطلاعات بیشتر در مورد سفارش</div>
+                <hr />
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-block">
+                <div class="row">
+                    @if (@Model.IsSuccess)
+                    {
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <ul class="no-list-style">
+                                <li class="mb-2">
+                                    <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i>  محصول</a></span>
+                                    <span class="line-height-2 display-block overflow-hidden">@Model.Data.Name</span>
+                                </li>
+                                <li class="mb-2">
+                                    <span class="primary text-bold-500"><a><i class="ft-briefcase font-small-3"></i> برند</a></span>
+                                    <span class="line-height-2 display-block overflow-hidden"> @Model.Data.Brand</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <ul class="no-list-style">
+
+                                <li class="mb-2">
+                                    <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i>قیمت</a></span>
+                                    <span class="line-height-2 display-block overflow-hidden"> @Model.Data.Price.ToString("n0")</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <ul class="no-list-style">
+                                <li class="mb-2">
+                                    <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i>موجودی جدید کالا</a></span>
+                                    <span class="line-height-2 display-block overflow-hidden">@Model.Data.Inventory</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <ul class="no-list-style">
+                                <li class="">
+                                    <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i>توضیحات</a></span>
+                                    <span class="line-height-2 display-block overflow-hidden">@Model.Data.Description</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    }
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <ul class="no-list-style">
+                            <li class="">
+                                <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i>شرح عملیات</a></span>
+                                <hr />
+                                <p>@Model.Message </p>
+                                <a href="~/admin/orders/index?orderState=Processing&reduce_count_success=@Model.Message" class="btn btn-success"> برو به مدیریت سفارشات </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

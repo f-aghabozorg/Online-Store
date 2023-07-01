@@ -1,0 +1,79 @@
+﻿@using Online_Store.Application.Services.Orders.Queries.GetUserOrders
+@using Online_Store.Common;
+
+@model List<GetUserOrdersDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>سفارشات شما</h1>
+<br />
+
+<div id="PrintDiv">
+    <table style="border:dashed" class="table table-responsive table-active table-bordered">
+        <thead>
+            <tr style="border:solid">
+                <th>شماره سفارش</th>
+                <th>شماره فاکتور</th>
+                <th>وضعیت سفارش</th>
+                <th>نام محصول </th>
+                <th>قیمت (تومان)</th>
+                <th>تعداد </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                @foreach (var detail in item.OrderDetails)
+                {
+                    <tr style="border:solid">
+
+
+                        <td>@item.OrderId</td>
+                        <td>@item.RequestPayId </td>
+                        <td>
+                            @{
+                                string state = EnumHelpers<Online_Store.Domain.Entities.Orders.OrderState>.GetDisplayValue(item.OrderState);
+                            }
+                            <text>@state </text>
+                        </td>
+                        <td> @detail.ProductName</td>
+                        <td> @detail.Price</td>
+                        <td> @detail.Count</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+
+</div>
+<br />
+<div class="text-center">
+    <button type="button" onclick="printDiv('PrintDiv')" class="btn btn-primary">چاپ</button>
+</div>
+
+@*<button value="Save" class="btn - btn-sm">
+    <i class="fa-fa-plus"></i>
+    <span>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="GeneratePDFFromRazorView">چاپ </a>
+    </span>
+
+</button>*@
+
+<script language="javascript">
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>

@@ -1,0 +1,244 @@
+﻿@using EndPoint.Site.Utilities;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+
+<!-- Mirrored from pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/demo-1/grids.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Sep 2018 14:54:38 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Convex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Convex admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>پنل کاربر</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="~/AdminTemplate/app-assets/img/ico/apple-icon-60.html">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/AdminTemplate/app-assets/img/ico/apple-icon-76.html">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/AdminTemplate/app-assets/img/ico/apple-icon-120.html">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/AdminTemplate/app-assets/img/ico/apple-icon-152.html">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/img/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="~/AdminTemplate/app-assets/img/ico/favicon-32.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/app-assets/fonts/feather/style.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/app-assets/fonts/simple-line-icons/style.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/app-assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/app-assets/vendors/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/app-assets/vendors/css/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/app-assets/css/app.css">
+</head>
+<body data-col="2-columns" class=" 2-columns ">
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="wrapper">
+
+
+        <div data-active-color="white" data-background-color="black" data-image="~/AdminTemplate/app-assets/img/sidebar-bg/01.jpg" class="app-sidebar">
+            <div class="sidebar-header">
+                <div class="logo clearfix">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="nav-account d-block pl">
+                            <span class="icon-account">
+                                <img src="~/SiteTemplate/assets/images/man.png" class="avator">
+                            </span>
+                            <a href="#"><span class="text align-middle"> @User.Identity.Name</span></a>
+
+                        </div>
+                    }
+                    <br />
+                    <a href="index-2.html" class="logo-text float-right">
+                        <div class="logo-img"><img src="~/AdminTemplate/app-assets/img/logo.png" alt="Convex Logo" /></div>
+                        @if (ClaimUtility.Getroles(User).Where(p => p == "Admin").Count() >= 1)
+                        {
+                            <span class="text align-middle">مدیر فروشگاه</span>
+                        }
+                        else if (ClaimUtility.Getroles(User).Where(p => p == "Operator").Count() >= 1)
+                        {
+                            <span class="text align-middle">اپراتور</span>
+
+                        }
+                        else if (ClaimUtility.Getroles(User).Where(p => p == "warehouse_keeper").Count() >= 1)
+                        {
+                            <span class="text align-middle">انباردار</span>
+
+                        }
+                    </a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="expanded" class="ft-disc toggle-icon"></i></a><a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="ft-circle"></i></a>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="nav-container">
+                    <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span><span class="tag badge badge-pill badge-danger mt-1"></span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="~/" class="menu-item"> امکانات مشتری - صفحه اصلی </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        @if (ClaimUtility.Getroles(User).Where(p => p == "Admin").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت کاربران</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/users/index" class="menu-item">لیست کاربران</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/users/Create" class="menu-item">ثبت نام کاربر جدید *</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        
+
+                        @if (ClaimUtility.Getroles(User).Where(p => p == "Admin").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت تبلیغات</span></a>
+                                <ul class="menu-content">
+
+                                    <li>
+                                        <a href="~/admin/sliders/add" class="menu-item"> افزودن اسلایدر</a>
+                                    </li>
+                                </ul>
+                                <ul class="menu-content">
+
+                                    <li>
+                                        <a href="~/admin/homepageimages/add" class="menu-item"> افزودن تصویر</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        @if (ClaimUtility.Getroles(User).Where(p => p == "warehouse_keeper" || p == "Admin").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title">  دسته بندی ها </span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/categories/" class="menu-item">دسته بندی ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/categories/addnewcategory" class="menu-item">افزودن دسته بندی جدید *</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+
+                        @if (ClaimUtility.Getroles(User).Where(p => p == "warehouse_keeper" || p == "Admin").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title"> محصولات </span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/products/" class="menu-item">لیست محصولات</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/products/addnewproduct" class="menu-item">افزودن محصول جدید *</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (ClaimUtility.Getroles(User).Where(p => p == "Operator" || p == "Admin" || p == "warehouse_keeper").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت سفارشات</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/orders/index?orderState=Processing" class="menu-item">در حال پردازش</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/orders/index?orderState=Delivered" class="menu-item">تحویل شده ها </a>
+                                    </li>
+                                    @*<li>
+                                        <a href="~/admin/orders/index?orderState=Canceled" class="menu-item"> لغو شده</a>
+                                    </li>*@
+                                </ul>
+                            </li>
+                        }
+
+                        @if (ClaimUtility.Getroles(User).Where(p => p == "Operator" || p == "Admin" || p == "warehouse_keeper").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title"> مدیریت فاکتورها </span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/Pay/" class="menu-item">لیست  </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-background"></div>
+        </div>
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-faded">
+            <div class="container-fluid">
+                
+                <div class="navbar-container">
+                    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                        <ul class="navbar-nav">
+                    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-panel">
+            <div class="main-content">
+                @RenderBody()
+            </div>
+
+            <footer class="footer footer-static footer-light">
+                @*<p class="clearfix text-muted text-center px-2"><span> &copy; 2022  کپی رایت <a href="" id="pixinventLink" target="_blank" class="text-bold-800 primary darken-2"> fkazemi5236 </a>,همه حقوق محفوظ است </span></p>*@
+            </footer>
+
+        </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+     <!-- BEGIN VENDOR JS-->
+
+
+    <script src="~/AdminTemplate/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+    <script src="~/AdminTemplate/app-assets/js/persian-datepicker.min.js"></script>
+    <script src="~/AdminTemplate/app-assets/vendors/js/core/popper.min.js"></script>
+    <script src="~/AdminTemplate/app-assets/vendors/js/core/bootstrap.min.js"></script>
+    <script src="~/AdminTemplate/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/AdminTemplate/app-assets/vendors/js/prism.min.js"></script>
+    <script src="~/AdminTemplate/app-assets/vendors/js/jquery.matchHeight-min.js"></script>
+    <script src="~/AdminTemplate/app-assets/vendors/js/screenfull.min.js"></script>
+    <script src="~/AdminTemplate/app-assets/vendors/js/pace/pace.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN CONVEX JS-->
+    <script src="~/AdminTemplate/app-assets/js/app-sidebar.js"></script>
+    <script src="~/AdminTemplate/app-assets/js/notification-sidebar.js"></script>
+    <script src="~/AdminTemplate/app-assets/js/customizer.js"></script>
+    <!-- END CONVEX JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <!-- END PAGE LEVEL JS-->
+    @RenderSection("Scripts",false)
+
+    @RenderSection("Modals",false)
+</body>
+
+<!-- Mirrored from pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/demo-1/grids.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Sep 2018 14:54:38 GMT -->
+</html>
