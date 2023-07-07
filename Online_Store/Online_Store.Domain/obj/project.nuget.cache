@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jq0D1L7TgxKV82QooXdJJKTlKgYbxEYR23iYUrKSDWOyWlPyIi/aDiNRFeuEl/HDAI8MDLw+srX4gR37fg+gCQ==",
+  "dgSpecHash": "JuYe3+iNiGXNwCccyDUqvzHJEqwEBf2Y+U/JD2p+HTOlS5BWwRJzdCwFvz641Cmx4MH3s5MhzBb8en5Lfmc80Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj",
+  "projectFilePath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

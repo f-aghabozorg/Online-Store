@@ -12028,11 +12028,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\EndPoint.Site\\EndPoint.Site.csproj",
+      "projectUniqueName": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\EndPoint.Site\\EndPoint.Site.csproj",
       "projectName": "EndPoint.Site",
-      "projectPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\EndPoint.Site\\EndPoint.Site.csproj",
+      "projectPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\EndPoint.Site\\EndPoint.Site.csproj",
       "packagesPath": "C:\\Users\\computer engineer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\EndPoint.Site\\obj\\",
+      "outputPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\EndPoint.Site\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\computer engineer\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -12050,11 +12050,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Application\\Online_Store.Application.csproj": {
-              "projectPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Application\\Online_Store.Application.csproj"
+            "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Application\\Online_Store.Application.csproj": {
+              "projectPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Application\\Online_Store.Application.csproj"
             },
-            "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Persistence\\Online_Store.Persistence.csproj": {
-              "projectPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Persistence\\Online_Store.Persistence.csproj"
+            "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Persistence\\Online_Store.Persistence.csproj": {
+              "projectPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Persistence\\Online_Store.Persistence.csproj"
             }
           }
         }

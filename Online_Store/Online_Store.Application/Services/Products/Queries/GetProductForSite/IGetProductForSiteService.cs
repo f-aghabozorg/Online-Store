@@ -7,7 +7,7 @@ namespace Online_Store.Application.Services.Products.Queries.GetProductForSite
 {
     public interface IGetProductForSiteService
     {
-        ResultDto<ResultProductForSiteDto> Execute(Ordering ordering,string SearchKey, int Page,int pageSize, long? CatId );
+        ResultDto<ResultProductForSiteDto> Execute(Ordering ordering,string SearchKey, int Page,int pageSize, long? CatId ,string? Brand=null, long? MinPrice=null, long? MaxPrice=null);
     }
 
     public enum Ordering

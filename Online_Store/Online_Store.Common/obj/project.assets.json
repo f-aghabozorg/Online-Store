@@ -84,11 +84,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Common\\Online_Store.Common.csproj",
+      "projectUniqueName": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Common\\Online_Store.Common.csproj",
       "projectName": "Online_Store.Common",
-      "projectPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Common\\Online_Store.Common.csproj",
+      "projectPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Common\\Online_Store.Common.csproj",
       "packagesPath": "C:\\Users\\computer engineer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Common\\obj\\",
+      "outputPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\computer engineer\\AppData\\Roaming\\NuGet\\NuGet.Config",

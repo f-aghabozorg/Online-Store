@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj": {}
+    "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj": {
+    "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj",
         "projectName": "Online_Store.Domain",
-        "projectPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj",
+        "projectPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Domain\\Online_Store.Domain.csproj",
         "packagesPath": "C:\\Users\\computer engineer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Domain\\obj\\",
+        "outputPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\computer engineer\\AppData\\Roaming\\NuGet\\NuGet.Config",

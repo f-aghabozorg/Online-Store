@@ -16,19 +16,31 @@ namespace Online_Store.Application.Services.Products.Queries.GetProductForSite
         {
             _context = context;
         }
-        public ResultDto<ResultProductForSiteDto> Execute(Ordering ordering, string SearchKey, int Page, int pageSize, long? CatId)
+        public ResultDto<ResultProductForSiteDto> Execute(Ordering ordering, string SearchKey, int Page, int pageSize, long? CatId, string? Brand = null, long? MinPrice = null, long? MaxPrice = null)
         {
             int totalRow = 0;
             var productQuery = _context.Products
                 .Include(p => p.ProductImages).AsQueryable();
 
-            if(CatId !=null)
+            if (CatId != null)
             {
                 productQuery = productQuery.Where(p => p.CategoryId == CatId || p.Category.ParentCategoryId == CatId).AsQueryable();
             }
-            if(!string.IsNullOrWhiteSpace(SearchKey))
+            if (!string.IsNullOrWhiteSpace(SearchKey))
             {
                 productQuery = productQuery.Where(p => p.Name.Contains(SearchKey) || p.Brand.Contains(SearchKey)).AsQueryable();
+            }
+            if (!string.IsNullOrWhiteSpace(Brand))
+            {
+                productQuery = productQuery.Where(p => p.Brand.Contains(Brand)).AsQueryable();
+            }
+            if (MinPrice != null)
+            {
+                productQuery = productQuery.Where(p => p.Price>=MinPrice).AsQueryable();
+            }
+            if (MaxPrice != null)
+            {
+                productQuery = productQuery.Where(p => p.Price <= MaxPrice).AsQueryable();
             }
 
             switch (ordering)
@@ -56,7 +68,7 @@ namespace Online_Store.Application.Services.Products.Queries.GetProductForSite
                     break;
             }
 
-            var product=productQuery.ToPaged(Page,  pageSize, out totalRow);
+            var product = productQuery.ToPaged(Page, pageSize, out totalRow);
 
             Random rd = new Random();
             return new ResultDto<ResultProductForSiteDto>
@@ -70,7 +82,7 @@ namespace Online_Store.Application.Services.Products.Queries.GetProductForSite
                         Star = rd.Next(1, 5),
                         Title = p.Name,
                         ImageSrc = p.ProductImages.FirstOrDefault().Src,
-                        Price=p.Price
+                        Price = p.Price
                     }).ToList(),
                 },
                 IsSuccess = true,

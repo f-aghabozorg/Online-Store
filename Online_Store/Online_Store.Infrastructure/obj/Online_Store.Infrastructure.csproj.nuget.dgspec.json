@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Infrastructure\\Online_Store.Infrastructure.csproj": {}
+    "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Infrastructure\\Online_Store.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Infrastructure\\Online_Store.Infrastructure.csproj": {
+    "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Infrastructure\\Online_Store.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Infrastructure\\Online_Store.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Infrastructure\\Online_Store.Infrastructure.csproj",
         "projectName": "Online_Store.Infrastructure",
-        "projectPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Infrastructure\\Online_Store.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Infrastructure\\Online_Store.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\computer engineer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\computer engineer\\Desktop\\Online_Store\\Online_Store.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\Online_Store.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\computer engineer\\AppData\\Roaming\\NuGet\\NuGet.Config",
