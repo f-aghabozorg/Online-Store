@@ -39,9 +39,6 @@
 </head>
 <body>
     <div class="wrapper">
-
-
-
         <div class="app-sidebar ">
             <div class="sidebar-content">
                 <section class="basic-elements">
@@ -90,26 +87,26 @@
 
                                                         <!--Price Range -------------------------------->
                                                         <div class="col-xl-12 col-lg-6 col-md-12 mb-1">
-                                                           @* <label>
+                                                           <label>
                                                                 جستجوی قیمت:
                                                             </label>
-                                                            <input type="radio" name="SearchByPrice">
-                                                            <label for="price"> بله </label>
-                                                            <input type="radio" name="SearchByPrice">
-                                                            <label for="price"> خیر </label>
-*@
+                                                            <input type="radio" name="SearchByPrice" onclick="showhide()">
+                                                                 <label for="price"> بله </label>
+                                                            <input type="radio" name="SearchByPrice" onclick="hide()">
+                                                                 <label for="price"> خیر </label>
                                                             
-                                                            <fieldset class="form-group">
+                                                            <fieldset class="form-group hide" id="priceSearch">
+                                                              
                                                                 <label for="basicInput"> بازه قیمت کالا </label>
                                                                 <br />
 
-                                                                
-                                                                <input type="range" min=@ViewBag.ProductsMinPrice max=@ViewBag.ProductsMaxPrice value=@ViewBag.ProductsMidPrice name="MinPrice" class="slider_min" id="Range_min">
+                                                                <input type="range" min=@ViewBag.ProductsMinPrice max=@ViewBag.ProductsMaxPrice value=@ViewBag.ProductsMinPrice name="MinPrice" class="slider_min" id="Range_min">
                                                                 <br />
-                                                                <label> حداقل قیمت: <span id="min_price"></span></label>
-                                                                
+
+                                                                <label> حداقل قیمت: <span id="min_price"></span></label>                                                                
                                                                 <br />
-                                                                <input type="range" min=@ViewBag.ProductsMinPrice max=@ViewBag.ProductsMaxPrice value=@ViewBag.ProductsMidPrice name="MaxPrice" class="slider_max" id="Range_max">
+
+                                                                <input type="range" min=@ViewBag.ProductsMinPrice max=@ViewBag.ProductsMaxPrice value=@ViewBag.ProductsMaxPrice name="MaxPrice" class="slider_max" id="Range_max">
                                                                 <br />
                                                                 <label> حداکثر قیمت: <span id="max_price"></span></label>
                                                                
@@ -326,7 +323,9 @@
             background: #1ac8db;
             cursor: pointer;
         }
-
+        .hide{
+            display:none;
+        }
 </style>
 
 
@@ -344,5 +343,15 @@
     output_max.innerHTML = parseInt(slider_max.value).toLocaleString();;
     slider_max.oninput = function () {
         output_max.innerHTML = parseInt(this.value).toLocaleString();;
+    }
+
+    function showhide(){
+        var priceSearch = document.getElementById('priceSearch');
+            priceSearch.classList.remove('hide');
+    }
+
+    function hide() {
+        var priceSearch = document.getElementById('priceSearch');
+        priceSearch.classList.add('hide');
     }
 </script>

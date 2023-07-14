@@ -52,7 +52,7 @@ namespace EndPoint.Site.Controllers
             var products = _productFacad.GetProductForSiteService.Execute(ordering, null, page, pageSize, null, null, null, null).Data.Products;
             ViewBag.ProductsMinPrice = products.Min(p => p.Price);
             ViewBag.ProductsMaxPrice = products.Max(p => p.Price);
-            ViewBag.ProductsMidPrice = (ViewBag.ProductsMinPrice + ViewBag.ProductsMaxPrice)/2;
+            //ViewBag.ProductsMidPrice = (ViewBag.ProductsMinPrice + ViewBag.ProductsMaxPrice)/2;
 
             return View(_productFacad.GetProductForSiteService.Execute(ordering, Searchkey, page, pageSize, CatId, Brand, MinPrice, MaxPrice).Data);
         }
