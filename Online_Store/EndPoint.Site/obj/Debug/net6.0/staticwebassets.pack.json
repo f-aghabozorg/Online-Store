@@ -2157,6 +2157,18 @@
       "PackagePath": "staticwebassets\\images\\ProductImages\\گردنبند\\گردنبند زنانه\\3.jpg"
     },
     {
+      "Id": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\EndPoint.Site\\wwwroot\\js\\chat.js",
+      "PackagePath": "staticwebassets\\js\\chat.js"
+    },
+    {
+      "Id": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\EndPoint.Site\\wwwroot\\js\\signalr\\dist\\browser\\signalr.js",
+      "PackagePath": "staticwebassets\\js\\signalr\\dist\\browser\\signalr.js"
+    },
+    {
+      "Id": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\EndPoint.Site\\wwwroot\\js\\signalr\\dist\\browser\\signalr.min.js",
+      "PackagePath": "staticwebassets\\js\\signalr\\dist\\browser\\signalr.min.js"
+    },
+    {
       "Id": "C:\\Users\\computer engineer\\Desktop\\OnlineStore\\Online_Store\\EndPoint.Site\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

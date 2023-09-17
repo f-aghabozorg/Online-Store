@@ -63,6 +63,7 @@ namespace Online_Store.Application.Services.Products.Queries.GetProductDetailFor
                         DisplayName = p.DisplayName,
                         Value = p.Value,
                     }).ToList(),
+                    inventory = Product.Inventory,
 
                 },
                 IsSuccess = true,
@@ -82,6 +83,7 @@ namespace Online_Store.Application.Services.Products.Queries.GetProductDetailFor
         public int Price { get; set; }
         public List<string> Images { get; set; }
         public List<ProductDetailForSite_FeaturesDto> Features { get; set; }
+        public int inventory {  get; set; }
     }
 
     public class ProductDetailForSite_FeaturesDto

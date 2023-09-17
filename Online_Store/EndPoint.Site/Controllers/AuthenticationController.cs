@@ -121,7 +121,7 @@ namespace EndPoint.Site.Controllers
                 new Claim(ClaimTypes.NameIdentifier,signupResult.Data.UserId.ToString()),
                 new Claim(ClaimTypes.Email, Email),
                 new Claim(ClaimTypes.Name, signupResult.Data.FirstName.ToString()+signupResult.Data.LastName.ToString()),
-                //new Claim(ClaimTypes.Name, signupResult.Data.LastName),
+                //new Claim(ClaimTypes.StreetAddress, signupResult.Data.LastName),
 
             };
                 foreach (var item in signupResult.Data.Roles)

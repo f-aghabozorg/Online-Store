@@ -46,14 +46,14 @@ namespace Online_Store.Application.Services.Products.Commands.AddNewProduct
                     Price = request.Price,
                     Inventory = request.Inventory,
                     Category = category,
-                    Displayed= request.Displayed,
+                    Displayed = request.Displayed,
                 };
                 _context.Products.Add(product);
 
                 List<ProductImages> productImages = new List<ProductImages>();
                 foreach (var item in request.Images)
                 {
-                    var uploadedResult = UploadFile(item,category.Name.ToString(), product.Name);
+                    var uploadedResult = UploadFile(item, category.Name.ToString(), product.Name);
                     productImages.Add(new ProductImages
                     {
                         Product = product,
@@ -71,7 +71,7 @@ namespace Online_Store.Application.Services.Products.Commands.AddNewProduct
                     {
                         DisplayName = item.DisplayName,
                         Value = item.Value,
-                        Product= product,
+                        Product = product,
                     });
                 }
                 _context.ProductFeatures.AddRange(productFeatures);
@@ -98,7 +98,7 @@ namespace Online_Store.Application.Services.Products.Commands.AddNewProduct
 
 
 
-        private UploadDto UploadFile(IFormFile file, string ProductCategory,string ProductName)
+        private UploadDto UploadFile(IFormFile file, string ProductCategory, string ProductName)
         {
             if (file != null)
             {

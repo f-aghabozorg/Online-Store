@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Online_Store.Domain\Online_Store.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\ContactSupport\Queries\GetClientMessageForAdmin\" />
+  </ItemGroup>
+
 </Project>

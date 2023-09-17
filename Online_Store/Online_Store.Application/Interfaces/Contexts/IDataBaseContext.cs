@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Online_Store.Domain.Entities.Carts;
 using Online_Store.Domain.Entities.Finances;
 using Online_Store.Domain.Entities.Orders;
+using Online_Store.Domain.Entities.ContactSupport;
 
 namespace Online_Store.Application.Interfaces.Contexts
 {
@@ -34,6 +35,8 @@ namespace Online_Store.Application.Interfaces.Contexts
 
         DbSet<Order> Orders { get; set; }
         DbSet<OrderDetail> OrderDetails { get; set; }
+
+        DbSet<ClientMessage> ClientMessages { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

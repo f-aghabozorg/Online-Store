@@ -1,10 +1,6 @@
 ﻿using Online_Store.Domain.Entities.Commons;
+using Online_Store.Domain.Entities.ContactSupport;
 using Online_Store.Domain.Entities.Orders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Online_Store.Domain.Entities.Users
 {
@@ -19,8 +15,7 @@ namespace Online_Store.Domain.Entities.Users
 
         // '1' user has 'n' roles
         public ICollection<UserInRole> UserInRoles { get; set; }
-        public DateTime RemoveTime { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
-
+        public virtual ICollection<ClientMessage> ClientMessages { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Online_Store.Application.Interfaces.Contexts;
 using Online_Store.Common.Roles;
 using Online_Store.Domain.Entities.Carts;
+using Online_Store.Domain.Entities.ContactSupport;
 using Online_Store.Domain.Entities.Finances;
 using Online_Store.Domain.Entities.HomePages;
 using Online_Store.Domain.Entities.Orders;
@@ -35,6 +36,7 @@ namespace Online_Store.Persistence.Contexts
         public DbSet<RequestPay> RequestPays { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<ClientMessage> ClientMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,6 +50,10 @@ namespace Online_Store.Persistence.Contexts
                 .WithMany(p => p.Orders)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<ClientMessage>()
+                .HasOne(p => p.User)
+                .WithMany(p => p.ClientMessages)
+                .OnDelete(DeleteBehavior.NoAction);
 
             //Seed Data
             SeedData(modelBuilder);
@@ -75,6 +81,8 @@ namespace Online_Store.Persistence.Contexts
             modelBuilder.Entity<Cart>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<CartItem>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<RequestPay>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<ClientMessage>().HasQueryFilter(p => !p.IsRemoved);
+
         }
 
         private void SeedData(ModelBuilder modelBuilder)

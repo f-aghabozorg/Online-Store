@@ -6,13 +6,16 @@ using Dto.Payment;
 using EndPoint.Site.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Online_Store.Application.Services.Carts;
 using Online_Store.Application.Services.Fainances.Commands.AddRequestPay;
 using Online_Store.Application.Services.Fainances.Commands.EditAuthorityRequestPayService;
 using Online_Store.Application.Services.Fainances.Queries.GetRequestPayService;
 using Online_Store.Application.Services.Orders.Commands.AddNewOrder;
+using Online_Store.Application.Services.Orders.Queries.GetUserOrders;
 using Online_Store.Domain.Entities.Users;
 using ZarinPal.Class;
 
@@ -29,15 +32,18 @@ namespace EndPoint.Site.Controllers
         private readonly Transactions _transactions;
         private readonly IGetRequestPayService _getRequestPayService;
         private readonly IAddNewOrderService _addNewOrderService;
+        private readonly IEditOrderService _editOrderService;
         private readonly IEditAuthorityRequestPayService _editAuthorityRequestPayService;
-        //public string address;
+        private readonly IGetUserOrdersService _getUserOrdersService;
+        public string address;
 
         public PayController(IAddRequestPayService addRequestPayService
-            , ICartService cartService
-            , IGetRequestPayService getRequestPayService
-            , IAddNewOrderService addNewOrderService
-            , IEditAuthorityRequestPayService editAuthorityRequestPayService
-             )
+                            , ICartService cartService
+                            , IGetRequestPayService getRequestPayService
+                            , IEditOrderService editOrderService
+                            , IAddNewOrderService addNewOrderService
+                            , IEditAuthorityRequestPayService editAuthorityRequestPayService
+                            , IGetUserOrdersService getUserOrdersService)
         {
             _addRequestPayService = addRequestPayService;
             _cartService = cartService;
@@ -48,17 +54,38 @@ namespace EndPoint.Site.Controllers
             _transactions = expose.CreateTransactions();
             _getRequestPayService = getRequestPayService;
             _addNewOrderService = addNewOrderService;
+            _editOrderService = editOrderService;
             _editAuthorityRequestPayService = editAuthorityRequestPayService;
+            _getUserOrdersService = getUserOrdersService;
         }
-        public async Task<IActionResult> Index()
+
+        [HttpPost]
+        public async Task<IActionResult> Index(string user_address)
         {
+            if (!user_address.IsNullOrEmpty())
+            { 
+                address = user_address;
+            }
+            else
+            {
+                return RedirectToAction("Index", "Cart");
+            }
             long? UserId = ClaimUtility.GetUserId(User);
             var cart = _cartService.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext), UserId);
+
             if (cart.Data.SumAmount > 0)
             {
                 var requestPay = _addRequestPayService.Execute(cart.Data.SumAmount, UserId.Value);
-                // ارسال در گاه پرداخت
+                var order_result_dto = _addNewOrderService.Execute(new RequestAddNewOrderServiceDto
+                {
+                    requestPayId = requestPay.Data.RequestPayId,
+                    CartId = cart.Data.CartId,
+                    UserId = UserId.Value,
+                    Address = user_address,
+                });
 
+                
+                // ارسال در گاه پرداخت
                 var result = await _payment.Request(new DtoRequest()
                 {
                     Mobile = "09121112222",
@@ -68,11 +95,7 @@ namespace EndPoint.Site.Controllers
                     Amount = requestPay.Data.Amount,
                     MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
                 }, ZarinPal.Class.Payment.Mode.sandbox);
-
-
                 return Redirect($"https://sandbox.zarinpal.com/pg/StartPay/{result.Authority}");
-
-
             }
             else
             {
@@ -81,16 +104,11 @@ namespace EndPoint.Site.Controllers
 
         }
 
-        //public async Task<IActionResult> GetUserAddress(string user_address)
-        //{
-        //    address = user_address;
-        //    return RedirectToAction("Index", "Cart", "success");
-        //}
+
         public async Task<IActionResult> Verify(Guid guid, string authority, string status)
         {
 
             var requestPay = _getRequestPayService.Execute(guid);
-
 
             var verification = await _payment.Verification(new DtoVerification
             {
@@ -100,8 +118,7 @@ namespace EndPoint.Site.Controllers
             }, Payment.Mode.sandbox);
 
             _editAuthorityRequestPayService.Execute(guid, authority);
-            //requestPay = _getRequestPayService.Execute(guid);
-
+            #region
             //var client = new RestClient("https://www.zarinpal.com/pg/rest/WebGate/PaymentVerification.json");
             //client.Timeout = -1;
             //var request = new RestRequest(Method.POST);
@@ -109,29 +126,26 @@ namespace EndPoint.Site.Controllers
             //request.AddParameter("application/json", $"{{\"MerchantID\" :\"{merchendId}\",\"Authority\":\"{Authority}\",\"Amount\":\"{10000}\"}}", ParameterType.RequestBody);
             //IRestResponse response = client.Execute(request);
             //VerificationPayResultDto verification = JsonConvert.DeserializeObject<VerificationPayResultDto>(response.Content);
+            #endregion
 
-            long? UserId = ClaimUtility.GetUserId(User);
-            var cart = _cartService.GetMyCart(_cookiesManeger.GetBrowserId(HttpContext), UserId);
+            long UserId = ClaimUtility.GetUserId(User).Value;
 
             if (verification.Status == 100)
             {
-                _addNewOrderService.Execute(new RequestAddNewOrderSericeDto
+                _editOrderService.Execute(new RequestEditOrderServiceDto
                 {
-                    CartId = cart.Data.CartId,
-                    UserId = UserId.Value,
+                    UserId = UserId,
                     RequestPayId = requestPay.Data.Id,
-                    Address = "",//address,
+                    Authority = authority,
                 });
 
-                //redirect to orders
-                return RedirectToAction("Index", "Orders");
+                //redirect to orders view
+                return View("Order", _getUserOrdersService.Execute(UserId).Data);
             }
             else
             {
                 return View();
             }
-
-            //return View();
         }
     }
 

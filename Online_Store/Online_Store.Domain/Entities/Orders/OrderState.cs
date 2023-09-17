@@ -10,6 +10,8 @@ namespace Online_Store.Domain.Entities.Orders
         Canceled = 1,
         [Display(Name = "تحویل شده")]
         Delivered = 2,
+        [Display(Name = "در حال پردازش از سوی درگاه پرداخت")]
+        PayProcessing = 3,
     }
 
 }

@@ -30,19 +30,14 @@ namespace Online_Store.Application.Services.Products.Queries.GetProductForSite
             {
                 productQuery = productQuery.Where(p => p.Name.Contains(SearchKey) || p.Brand.Contains(SearchKey)).AsQueryable();
             }
-            if (!string.IsNullOrWhiteSpace(Brand))
+            if(!string.IsNullOrWhiteSpace(Brand))
             {
                 productQuery = productQuery.Where(p => p.Brand.Contains(Brand)).AsQueryable();
             }
-            if (MinPrice != null)
+            if (!string.IsNullOrWhiteSpace(MaxPrice.ToString())&& !string.IsNullOrWhiteSpace(MinPrice.ToString()))
             {
-                productQuery = productQuery.Where(p => p.Price>=MinPrice).AsQueryable();
+                productQuery = productQuery.Where(p => p.Price > (MinPrice - 1) && p.Price < (MaxPrice + 1)).AsQueryable();
             }
-            if (MaxPrice != null)
-            {
-                productQuery = productQuery.Where(p => p.Price <= MaxPrice).AsQueryable();
-            }
-
             switch (ordering)
             {
                 case Ordering.NotOrder:
@@ -88,6 +83,8 @@ namespace Online_Store.Application.Services.Products.Queries.GetProductForSite
                 IsSuccess = true,
             };
         }
+
+      
     }
 
 }

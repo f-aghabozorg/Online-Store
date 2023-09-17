@@ -22,9 +22,5 @@ namespace EndPoint.Site.Controllers
             long userId = ClaimUtility.GetUserId(User).Value;
             return View(_getUserOrdersService.Execute(userId).Data);
         }
-        //public IActionResult GeneratePDFFromRazorView()
-        //{
-
-        //}
     }
 }

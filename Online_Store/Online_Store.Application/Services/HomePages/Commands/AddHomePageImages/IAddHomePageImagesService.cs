@@ -73,7 +73,7 @@ namespace Online_Store.Application.Services.HomePages.Commands.AddHomePageImages
                 }
 
 
-            
+
                 string filePath = Path.Combine(uploadsRootFolder, file.FileName);
                 if (File.Exists(filePath))
                     filePath = uploadsRootFolder + DateTime.Now.Ticks.ToString() + "-" + file.FileName;

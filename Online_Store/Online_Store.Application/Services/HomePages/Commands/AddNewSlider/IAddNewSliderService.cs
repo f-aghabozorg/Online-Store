@@ -71,7 +71,7 @@ namespace Online_Store.Application.Services.HomePages.Commands.AddNewSlider
 
                 string filePath = Path.Combine(uploadsRootFolder, file.FileName);
                 if (File.Exists(filePath))
-                    filePath = uploadsRootFolder + DateTime.Now.Ticks.ToString() + "-"+ file.FileName;
+                    filePath = uploadsRootFolder + DateTime.Now.Ticks.ToString() + "-" + file.FileName;
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {

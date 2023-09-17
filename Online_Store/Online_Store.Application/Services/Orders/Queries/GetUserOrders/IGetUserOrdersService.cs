@@ -51,8 +51,6 @@ namespace Online_Store.Application.Services.Orders.Queries.GetUserOrders
                 Data = orders,
                 IsSuccess = true,
             };
-
-
         }
     }
 

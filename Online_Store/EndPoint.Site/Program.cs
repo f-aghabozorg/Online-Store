@@ -29,7 +29,8 @@ using Online_Store.Application.Services.Orders.Commands.OrderStatusChange;
 using Online_Store.Application.Services.Fainances.Commands.EditAuthorityRequestPayService;
 using Online_Store.Application.Services.Products.Commands.EditProduct;
 using Online_Store.Application.Services.Products.Commands.RemoveProduct;
-using Online_Store.Application.Services.Users.Commands.RemoveUser;
+using EndPoint.Hubs;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,7 +83,9 @@ builder.Services.AddScoped<IGetRequestPayForAdminService, GetRequestPayForAdminS
 builder.Services.AddScoped<IEditAuthorityRequestPayService, EditAuthorityRequestPayService>();
 
 
+
 builder.Services.AddScoped<IAddNewOrderService, AddNewOrderService>();
+builder.Services.AddScoped<IEditOrderService, EditOrderService>();
 builder.Services.AddScoped<IGetUserOrdersService, GetUserOrdersService>();
 builder.Services.AddScoped<IGetOrdersForAdminService, GetOrdersForAdminService>();
 builder.Services.AddScoped<IOrderStatusChangeService, OrderStatusChangeService>();
@@ -90,8 +93,10 @@ builder.Services.AddScoped<IOrderStatusChangeService, OrderStatusChangeService>(
 builder.Services.AddScoped<IEditProductService, EditProductService>();
 builder.Services.AddScoped<IRemoveProductService, RemoveProductService>();
 
+builder.Services.AddSignalR();
 
-
+string PicturesUploadPath = $@"E:\";
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(PicturesUploadPath));            //uploadpath
 
 
 builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
@@ -129,4 +134,7 @@ app.UseEndpoints(endpoints =>
         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 });
+
+app.MapHub<ChatHub>("/chatHub");
+
 app.Run();

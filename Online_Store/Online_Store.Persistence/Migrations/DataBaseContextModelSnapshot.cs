@@ -99,6 +99,44 @@ namespace OnlineStore.Persistence.Migrations
                     b.ToTable("CartItems");
                 });
 
+            modelBuilder.Entity("Online_Store.Domain.Entities.ContactSupport.ClientMessage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Topic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ClientMessages");
+                });
+
             modelBuilder.Entity("Online_Store.Domain.Entities.Finances.RequestPay", b =>
                 {
                     b.Property<long>("Id")
@@ -492,28 +530,28 @@ namespace OnlineStore.Persistence.Migrations
                         new
                         {
                             Id = 1L,
-                            InsertTime = new DateTime(2023, 6, 17, 19, 51, 42, 120, DateTimeKind.Local).AddTicks(3963),
+                            InsertTime = new DateTime(2023, 8, 30, 16, 30, 53, 193, DateTimeKind.Local).AddTicks(9625),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2L,
-                            InsertTime = new DateTime(2023, 6, 17, 19, 51, 42, 120, DateTimeKind.Local).AddTicks(4030),
+                            InsertTime = new DateTime(2023, 8, 30, 16, 30, 53, 193, DateTimeKind.Local).AddTicks(9679),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3L,
-                            InsertTime = new DateTime(2023, 6, 17, 19, 51, 42, 120, DateTimeKind.Local).AddTicks(4043),
+                            InsertTime = new DateTime(2023, 8, 30, 16, 30, 53, 193, DateTimeKind.Local).AddTicks(9695),
                             IsRemoved = false,
                             Name = "Customer"
                         },
                         new
                         {
                             Id = 4L,
-                            InsertTime = new DateTime(2023, 6, 17, 19, 51, 42, 120, DateTimeKind.Local).AddTicks(4054),
+                            InsertTime = new DateTime(2023, 8, 30, 16, 30, 53, 193, DateTimeKind.Local).AddTicks(9718),
                             IsRemoved = false,
                             Name = "warehouse_keeper"
                         });
@@ -552,7 +590,7 @@ namespace OnlineStore.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RemoveTime")
+                    b.Property<DateTime?>("RemoveTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("UpdateTime")
@@ -627,6 +665,17 @@ namespace OnlineStore.Persistence.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Online_Store.Domain.Entities.ContactSupport.ClientMessage", b =>
+                {
+                    b.HasOne("Online_Store.Domain.Entities.Users.User", "User")
+                        .WithMany("ClientMessages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Online_Store.Domain.Entities.Finances.RequestPay", b =>
@@ -773,6 +822,8 @@ namespace OnlineStore.Persistence.Migrations
 
             modelBuilder.Entity("Online_Store.Domain.Entities.Users.User", b =>
                 {
+                    b.Navigation("ClientMessages");
+
                     b.Navigation("Orders");
 
                     b.Navigation("UserInRoles");
